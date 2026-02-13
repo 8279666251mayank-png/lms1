@@ -27,9 +27,9 @@ const [lectureDetails,setLectureDetails] = useState(
 )
 
 const handleChapter = (action, chapterId) => {
-  if (action === 'add') {
+  if (action === 'add'){
     const title = prompt('Enter Chapter Name:');
-    if (title) {
+    if (title){  
       const newChapter = {
         chapterId: uniqid(),
         chapterTitle: title,

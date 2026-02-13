@@ -4,10 +4,11 @@ import {Link} from "react-router-dom"
 import {useClerk,UserButton,useUser} from "@clerk/clerk-react"
 import { AppContext } from "../../context/AppContent"
 
+
 const Navbar =()=>{
 
     const {navigate,isEducator} = useContext(AppContext)
-
+  
   const isCourseListPage = location.pathname.includes("/course-list")
 
   const {openSignIn} = useClerk()

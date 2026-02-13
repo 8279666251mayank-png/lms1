@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom'
 import CourseCard from '../../components/student/CourseCard'
 import { assets } from '../../assets/assets'
 
-const CoursesList = () => {
+const CoursesList = () =>{
 
   const {navigate,allCourses} = useContext(AppContext)
   const [data,setdata] = useState(" ")
