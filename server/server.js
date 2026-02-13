@@ -16,7 +16,9 @@ await connectDB()
 
 //Routes
 app.get("/",(req,res)=>res.send("API Working"))
-app.post("/clerk",express.raw({ type: "application/json" }),ClerkWebhook)
+app.post("/clerk",express.raw({ type:"application/json" }),ClerkWebhook)
+
+app.use(express.json());
 
 //port 
 const PORT = process.env.PORT || 5000
