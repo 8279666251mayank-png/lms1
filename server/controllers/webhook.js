@@ -7,7 +7,7 @@ export const ClerkWebhook = async (req, res) => {
 
   try {
     console.log("req.body type:", typeof req.body, Buffer.isBuffer(req.body));
-    console.log("req.body length:", req.body.length);
+    console.log("req.body :", req.body);
 
     // Use raw body directly
     const wh = new Webhook(process.env.CLERK_WEBHOOK_SECRET);
