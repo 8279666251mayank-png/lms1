@@ -3,6 +3,8 @@ import cors from "cors";
 import "dotenv/config";
 import connectDB from "./configs/mongodb.js";
 import { ClerkWebhook } from "./controllers/webhook.js";
+import { rawBody } from "svix/express";
+
 
 const app = express();
 
