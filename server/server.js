@@ -15,7 +15,7 @@ await connectDB();
 // Must come BEFORE any global parser
 app.post(
   "/clerk",
-  express.raw({ type: "application/json", limit: "5mb" }),
+  rawBody(),
   ClerkWebhook
 );
 
