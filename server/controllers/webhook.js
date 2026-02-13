@@ -5,7 +5,8 @@ import User from "../models/User.js"; // Your Mongoose model
 export const ClerkWebhook = async (req, res) => {
   console.log("Webhook hit!"); // will appear in Render logs
 
-  try {
+  try {  
+    console.log("req.headers:", req.headers);
     console.log("req.body type:", typeof req.body, Buffer.isBuffer(req.body));
     console.log("req.body :", req.body);
 
