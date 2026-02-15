@@ -18,10 +18,11 @@ export const ClerkWebhook = async (req, res) => {
     console.log("event type",event.type)
 
     const { type, data } = event;
-
+    console.log("data", data)
 
     if (type === "user.created" || type === "user.updated") {
         console.log("jgdcshkjgvhg")
+        
         const user = data.user
         console.log("user",user);
       await User.findByIdAndUpdate(
