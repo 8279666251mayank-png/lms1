@@ -15,6 +15,7 @@ export const ClerkWebhook = async (req, res) => {
     });
    
     console.log("event",event)
+    console.log("event type",event.type)
 
     const { type, data } = event;
 
