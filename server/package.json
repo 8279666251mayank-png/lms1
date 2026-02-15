@@ -2,24 +2,26 @@
   "name": "server",
   "version": "1.0.0",
   "main": "index.js",
-  "type":"module",
+  "type": "module",
   "scripts": {
-   "server":"nodemon server.js",
-    "start":"node server.js"
+    "server": "nodemon server.js",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@clerk/clerk-sdk-node": "^4.13.23",
     "@clerk/express": "^1.7.69",
     "axios": "^1.13.5",
     "cloudinary": "^2.9.0",
     "cors": "^2.8.6",
-    "dotenv": "^17.2.4",
+    "dotenv": "^17.3.1",
     "express": "^5.2.1",
     "mongoose": "^9.2.1",
     "multer": "^2.0.2",
+    "node-cron": "^4.2.1",
     "nodemon": "^3.1.11",
     "stripe": "^20.3.1",
     "svix": "^1.42.0"
