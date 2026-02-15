@@ -1,16 +1,21 @@
-import Clerk from "@clerk/clerk-sdk-node";
 import User from "../models/User.js";
-
-//Initialize Clerk SDK with your secret key
-const clerk = new Clerk({ apiKey: process.env.CLERK_SECRET_KEY });
+import { clerkClient } from "@clerk/clerk-sdk-node";
 
 export const syncUsers = async () => {
   try {
-    console.log("Fetching users from Clerk...");
+    if (!process.env.CLERK_SECRET_KEY) {
+      console.log(" Secret key missing in .env");
+      return;
+    }
 
-    // Get all users from Clerk
-    const users = await clerk.users.getUserList({ limit: 1000 });
-    console.log(`Fetched ${users.length} users`);
+    console.log(" Checking Clerk Secret Key...");
+
+    const users = await clerkClient.users.getUserList({
+      limit: 1,
+    });
+
+    console.log("Secret Key is VALID");
+    console.log("user",users)
 
     //  Create or update users in MongoDB
     for (const u of users) {
@@ -25,13 +30,14 @@ export const syncUsers = async () => {
       );
     }
 
-    console.log("Users created/updated ✅");
+    console.log("Users created/updated");
 
     //  Delete users in DB who are no longer in Clerk
     const clerkUserIds = users.map((u) => u.id); // IDs of current Clerk users
     const dbUsers = await User.find(); // all users in MongoDB
+   
 
-    for (const dbUser of dbUsers) {
+    for (const dbUser of dbUsers){
       if (!clerkUserIds.includes(dbUser._id)) {
         await User.findByIdAndDelete(dbUser._id);
         console.log(`Deleted user: ${dbUser.name} (${dbUser._id})`);
