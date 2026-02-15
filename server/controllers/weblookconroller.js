@@ -21,12 +21,13 @@ export const ClerkWebhook = async (req, res) => {
 
 
     if (type === "user.created" || type === "user.updated") {
+        const user = data.user
       await User.findByIdAndUpdate(
         data.id,
         {
-          email: data.email_addresses?.[0]?.email_address,
-          name: `${data.first_name || ""} ${data.last_name || ""}`,
-          imageUrl: data.image_url,
+          email: user.email_addresses?.[0]?.email_address,
+          name: `${user.first_name || ""} ${user.last_name || ""}`,
+          imageUrl: user.image_url,
         },
         { upsert: true }
       );
