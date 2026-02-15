@@ -13,8 +13,11 @@ export const ClerkWebhook = async (req, res) => {
       "svix-timestamp": req.headers["svix-timestamp"],
       "svix-signature": req.headers["svix-signature"],
     });
+   
+    console.log("event",event)
 
     const { type, data } = event;
+
 
     if (type === "user.created" || type === "user.updated") {
       await User.findByIdAndUpdate(
