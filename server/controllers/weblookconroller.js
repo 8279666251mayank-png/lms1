@@ -14,16 +14,14 @@ export const ClerkWebhook = async (req, res) => {
       "svix-signature": req.headers["svix-signature"],
     });
    
-    console.log("event",event)
     console.log("event type",event.type)
 
     const { type, data } = event;
-    console.log("data", data)
 
 
+    if(type == "user.created" || type == "user.updated") {
         console.log("jgdcshkjgvhg")
-        const user = data.user
-        console.log("user",user);
+        
       await User.findByIdAndUpdate(
         data.id,
         {
@@ -33,9 +31,9 @@ export const ClerkWebhook = async (req, res) => {
         },
         { upsert: true }
       );
-    
+    }
 
-    if (type === "user.deleted") {
+    if (type == "user.deleted") {
       await User.findByIdAndDelete(data.id);
     }
 
