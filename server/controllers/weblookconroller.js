@@ -8,7 +8,7 @@ export const ClerkWebhook = async (req, res) => {
   try {
     const wh = new Webhook(process.env.CLERK_WEBHOOK_SECRET);
 
-    const event = wh.verify(req.body, {
+    const event = wh.verify(req.body,{
       "svix-id": req.headers["svix-id"],
       "svix-timestamp": req.headers["svix-timestamp"],
       "svix-signature": req.headers["svix-signature"],
@@ -23,7 +23,7 @@ export const ClerkWebhook = async (req, res) => {
         console.log("jgdcshkjgvhg")
         const user = data.user
       await User.findByIdAndUpdate(
-        data.id,
+        user.id,
         {
           email: user.email_addresses?.[0]?.email_address,
           name: `${user.first_name || ""} ${user.last_name || ""}`,
@@ -33,7 +33,7 @@ export const ClerkWebhook = async (req, res) => {
       );
     }
 
-    if (type == "user.deleted") {
+    if (type == "user.deleted"){
       await User.findByIdAndDelete(data.id);
     }
 

@@ -1,5 +1,5 @@
 import User from "../models/User.js";
-import { clerkClient } from "@clerk/clerk-sdk-node";
+
 
 export const syncUsers = async () => {
   try {
@@ -7,6 +7,9 @@ export const syncUsers = async () => {
       console.log(" Secret key missing in .env");
       return;
     }
+
+    console.log("req.auth",req.auth)
+
 
     console.log(" Checking Clerk Secret Key...");
 
@@ -19,6 +22,7 @@ export const syncUsers = async () => {
 
     //  Create or update users in MongoDB
     for (const u of users) {
+      console.log("u.id",u.id)
       await User.findByIdAndUpdate(
         u.id,
         {
