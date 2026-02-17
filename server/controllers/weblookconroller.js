@@ -17,7 +17,7 @@ export const ClerkWebhook = async (req, res) => {
     console.log("event type",event.type)
 
     const { type, data } = event;
-
+    console.log("data",data)
 
     if(type == "session.created" || type == "session.updated") {
         console.log("jgdcshkjgvhg")
