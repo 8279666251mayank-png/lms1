@@ -23,7 +23,7 @@ export const ClerkWebhook = async (req, res) => {
         console.log("jgdcshkjgvhg")
         const user = data.user
       await User.findByIdAndUpdate(
-        user.id,
+        data.user_id,
         {
           email: user.email_addresses?.[0]?.email_address,
           name: `${user.first_name || ""} ${user.last_name || ""}`,
